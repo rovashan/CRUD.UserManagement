@@ -1,0 +1,49 @@
+<br />
+<h3>
+  Users
+</h3>
+<br />
+<div class="col-md-12  col-centered">
+  <button class="btn btn-success" (click)="add()">Add New User</button>
+</div>
+<br/>
+<div class="col-md-12 col-centered">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i=index;">
+
+        <td>{{user.userId}}</td>
+        <td>
+          <span *ngIf="user.userId!==editRowId">{{user.userName}}</span>
+          <input type="text" [(ngModel)]="user.userName" *ngIf="user.userId===editRowId" class="form-control" required />
+        </td>
+        <td>
+            <span *ngIf="user.userId!==editRowId">****</span>
+            <input type="password" [(ngModel)]="user.password" *ngIf="user.userId===editRowId" class="form-control" required />
+          </td>
+        <td>
+          <span *ngIf="user.userId!==editRowId">{{user.firstName}}</span>
+          <input type="text" [(ngModel)]="user.firstName" *ngIf="user.userId===editRowId" class="form-control" required />
+        </td>
+        <td>
+          <span *ngIf="user.userId!==editRowId">{{user.lastName}}</span>
+          <input type="text" [(ngModel)]="user.lastName" *ngIf="user.userId===editRowId" class="form-control" required />
+        </td>
+        
+        <td>
+          <button class="btn btn-danger" (click)="deleteUser(user)">Remove From Group</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

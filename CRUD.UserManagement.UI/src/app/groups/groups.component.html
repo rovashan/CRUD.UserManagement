@@ -1,0 +1,44 @@
+<br />
+<h3>
+  Groups
+</h3>
+
+<br />
+
+<div class="col-md-12  col-centered">
+  <button class="btn btn-success" (click)="add()">Add New Group</button>
+</div>
+<br />
+<div class="col-md-12 col-centered">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Admin</th>
+       
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let g of groups; let i=index;">
+
+        <td>{{g.groupId}}</td>
+        <td>
+          <span>{{g.groupName}}</span>
+        </td>
+        <td>
+          <span>{{g.groupAdminName}}</span>
+        </td>
+      
+
+        <td>
+          <button *ngIf="!memberExist(g)" class="btn btn-success" (click)="join(g)" >Join</button>
+          <button *ngIf="memberExist(g)" class="btn btn-success" disabled="disabled"  >Already Member</button>
+          <button *ngIf="isAdmin(g)"  class="btn btn-warning" (click)="ViewMembers(g)" style="margin-left: 20px;" >View Members</button>         
+          <button  *ngIf="isAdmin(g)" class="btn btn-primary" (click)="edit(g)" style="margin-left: 20px;">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
